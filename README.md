@@ -1,6 +1,7 @@
-LUMA
+<img width="480" alt="LUMA 게임 스크린샷" src="https://github.com/user-attachments/assets/d6b4a599-07e6-4d6a-8952-177c1cb2882a" />
 
-<img width="784" height="784" alt="LUMA 게임 스크린샷" src="https://github.com/user-attachments/assets/d6b4a599-07e6-4d6a-8952-177c1cb2882a" />
+<br />
+<br />
 
 방향을 뒤집어 빛을 수집하고 붉은 파동을 피하는 모바일 우선 원터치 아케이드 게임입니다.
 
