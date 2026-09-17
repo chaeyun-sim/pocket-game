@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="방향을 뒤집고, 빛을 모으고, 붕괴하는 우주에서 살아남으세요.">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>LUMA — Orbit of Light</title>
+</head>
+<body>
+  <main id="app">
+    <canvas id="game" aria-label="LUMA 게임 화면"></canvas>
+
+    <header class="hud hidden" id="hud">
+      <div><span class="label">SCORE</span><strong id="score">0</strong></div>
+      <div class="combo" id="combo">×1</div>
+      <div class="right"><span class="label">BEST</span><strong id="best">0</strong></div>
+      <div class="mission-chip" id="missionChip">빛 0/8</div>
+      <div class="boss-bar" id="bossBar"><span>THE ECLIPSE</span><i><b id="bossHealth"></b></i></div>
+    </header>
+
+    <section class="screen active" id="home">
+      <div class="eyebrow">A POCKET-SIZED COSMOS</div>
+      <h1>LU<span>M</span>A</h1>
+      <p class="tagline">빛의 궤도를 뒤집으세요.</p>
+      <div class="orb" aria-hidden="true"><i></i></div>
+      <button class="primary" id="play">시작하기 <kbd>SPACE</kbd></button>
+      <button class="daily" id="daily" disabled aria-disabled="true">오늘의 궤도 <span>준비 중</span></button>
+      <button class="meta-button" id="vault">행성계 <span id="vaultStatus">LUMA</span></button>
+      <div class="home-footer">
+        <button class="icon-button" id="sound" aria-label="소리 켜기 또는 끄기">♪</button>
+        <p>화면을 눌러 방향 전환 · 아슬아슬하게 스쳐 보너스</p>
+        <button class="icon-button" id="info" aria-label="게임 방법">?</button>
+      </div>
+    </section>
+
+    <section class="screen modal" id="vaultScreen" aria-hidden="true">
+      <div class="card vault-card">
+        <div class="eyebrow">SELECT YOUR GRAVITY</div>
+        <h2>행성계</h2>
+        <p class="vault-total"><b id="totalLight">0</b> TOTAL LIGHT</p>
+        <h3>행성 · 중력 법칙</h3>
+        <div class="skins" id="skins"></div>
+        <h3>중력 변칙</h3>
+        <button class="anomaly" id="echoToggle"><i>◌</i><span><b>ECHO ANOMALY</b><small>시간 분기 · 중력선 · 점수 ×1.5</small></span><em id="echoState">OFF</em></button>
+        <h3>명예의 전당</h3>
+        <ol class="leaderboard" id="leaderboard"></ol>
+        <button class="primary compact" id="closeVault">완료</button>
+      </div>
+    </section>
+
+    <section class="screen modal" id="tutorial" aria-hidden="true">
+      <div class="card">
+        <div class="mini-orbit"><i></i></div>
+        <h2>하나의 손가락.<br>무한한 궤도.</h2>
+        <p><b>탭</b>하면 방향이 뒤집힙니다.<br>붉은 파동을 피하고 ◇ 모양의 <b>빛 조각</b>을 통과해 수집하세요.</p>
+        <p class="light-guide"><span>◇</span><b>LIGHT는 어떻게 모으나요?</b><br>직접 또는 에코로 빛 조각을 먹은 뒤 한 판이 끝나면 보유 LIGHT에 더해집니다. 모은 LIGHT로 행성계에서 새로운 중력 법칙을 해금할 수 있어요.</p>
+        <p class="tip">파동 가까이를 스치면 <em>NEAR MISS</em> 보너스!</p>
+        <button class="primary" id="tutorialPlay">알겠어요</button>
+      </div>
+    </section>
+
+    <section class="screen modal" id="gameover" aria-hidden="true">
+      <div class="card result-card">
+        <div class="eyebrow" id="resultLabel">ORBIT LOST</div>
+        <h2 id="finalScore">0</h2>
+        <p>최고 기록 <b id="finalBest">0</b></p>
+        <div class="stats">
+          <div><strong id="shards">0</strong><span>빛 조각</span></div>
+          <div><strong id="nearMisses">0</strong><span>스침</span></div>
+          <div><strong id="maxCombo">×1</strong><span>최대 콤보</span></div>
+        </div>
+        <div class="mission-result" id="missionResult"></div>
+        <button class="primary" id="retry">다시 시작</button>
+        <button class="text-button" id="homeButton">홈으로</button>
+      </div>
+    </section>
+
+    <div class="toast" id="toast"></div>
+  </main>
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>

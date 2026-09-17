@@ -1,2 +1,25 @@
+LUMA
 
-<img width="784" height="784" alt="스크린샷 2026-09-17 오후 7 19 33" src="https://github.com/user-attachments/assets/d6b4a599-07e6-4d6a-8952-177c1cb2882a" />
+<img width="784" height="784" alt="LUMA 게임 스크린샷" src="https://github.com/user-attachments/assets/d6b4a599-07e6-4d6a-8952-177c1cb2882a" />
+
+방향을 뒤집어 빛을 수집하고 붉은 파동을 피하는 모바일 우선 원터치 아케이드 게임입니다.
+
+30초 생존 후 등장하는 THE ECLIPSE 보스전
+
+행성계에서 장착하는 고난도 ECHO ANOMALY: 시간선을 갈라 중력선으로 장애물을 자르고 점수 ×1.5
+
+재결합 시 주변 위협을 빛으로 바꾸는 PARADOX 폭발
+
+서로 다른 물리 법칙을 가진 6개 행성: 원형 LUMA, 가속 타원 VELA, 8자 NOX, 삼엽 KAIROS, 코너 슬링샷 RIFT, 다중 교차 ABYSS
+
+매 판 무작위로 선택되는 3개 보너스 미션
+
+누적 빛으로 해금하는 플레이 가능한 행성계
+
+기기에 저장되는 최고 기록과 명예의 전당
+
+날짜별로 동일한 패턴을 제공하는 일일 도전
+
+npm test npm run dev
+
+브라우저에서 http://localhost:8080을 여세요. 터치, 클릭 또는 스페이스바로 공전 방향을 바꿀 수 있습니다. 에코 모드에서는 탭 직전 방향으로 에코가 분기됩니다. 둘 사이의 중력선으로 장애물을 자르고, 에코와 재결합해 PARADOX를 일으키세요. 진행도와 일일 도전 기록은 기기에 저장됩니다.
