@@ -1,11 +1,11 @@
-import { TAU, wrapAngle, angularDistance, scoreForShard, difficultyAt, daySeed, mulberry32 } from './logic.js';
+import { TAU, wrapAngle, angularDistance, scoreForShard, orbitSpeedMultiplier, difficultyAt, daySeed, mulberry32 } from './logic.js';
 
 const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d'),$=id=>document.getElementById(id);
 const ui={home:$('home'),tutorial:$('tutorial'),over:$('gameover'),vault:$('vaultScreen'),hud:$('hud'),score:$('score'),best:$('best'),combo:$('combo'),toast:$('toast'),mission:$('missionChip'),bossBar:$('bossBar'),bossHealth:$('bossHealth')};
 const PLANETS=[
   {id:'luma',name:'LUMA',color:'#75f5ff',cost:0,mult:1,pressure:1,desc:'★ 안정적인 원형 중력'},
   {id:'vela',name:'VELA',color:'#ffd85c',cost:40,mult:1.1,pressure:.95,desc:'★★ 근일점 가속 · ×1.1'},
-  {id:'nox',name:'NOX',color:'#b48aff',cost:120,mult:1.25,pressure:.9,desc:'★★★ 8자 교차 · ×1.25'},
+  {id:'nox',name:'NOX',color:'#b48aff',cost:120,mult:1.25,pressure:.9,desc:'★★★ 교차점 가속 · ×1.25'},
   {id:'kairos',name:'KAIROS',color:'#ff7cb7',cost:220,mult:1.4,pressure:.82,desc:'★★★★ 삼중 가속 · ×1.4'},
   {id:'rift',name:'RIFT',color:'#75ffb2',cost:400,mult:1.6,pressure:.75,desc:'★★★★★ 코너 폭주 · ×1.6'},
   {id:'abyss',name:'ABYSS',color:'#ff735c',cost:700,mult:2,pressure:.68,desc:'★★★★★★ 다중 교차 · ×2'},
@@ -27,7 +27,7 @@ function showToast(text,duration=650){ui.toast.textContent=text;ui.toast.classLi
 function planet(){return PLANETS.find(item=>item.id===selectedPlanet)||PLANETS[0];}
 function scoreMultiplier(){return planet().mult*(echoMode?1.5:1);}
 function point(angle,r=orbit){const scale=r/orbit,c=Math.cos(angle),s=Math.sin(angle);if(selectedPlanet==='vela')return{x:cx+c*orbit*1.14*scale,y:cy+s*orbit*.72*scale};if(selectedPlanet==='nox')return{x:cx+Math.sin(angle)*orbit*scale,y:cy+Math.sin(angle*2)*orbit*.52*scale};if(selectedPlanet==='kairos'){const radius=orbit*(.72+.28*Math.cos(angle*3))*scale;return{x:cx+c*radius,y:cy+s*radius};}if(selectedPlanet==='rift')return{x:cx+Math.sign(c)*Math.pow(Math.abs(c),.46)*orbit*scale,y:cy+Math.sign(s)*Math.pow(Math.abs(s),.46)*orbit*.82*scale};if(selectedPlanet==='abyss')return{x:cx+Math.sin(angle*2)*orbit*.96*scale,y:cy+Math.sin(angle*3)*orbit*.68*scale};return{x:cx+c*r,y:cy+s*r};}
-function gravitySpeed(angle){if(selectedPlanet==='vela')return.72+Math.abs(Math.sin(angle))*1.05;if(selectedPlanet==='nox')return 1.08;if(selectedPlanet==='kairos')return.68+Math.abs(Math.sin(angle*3))*1.15;if(selectedPlanet==='rift')return.58+Math.abs(Math.sin(angle*2))*1.55;if(selectedPlanet==='abyss')return.72+Math.abs(Math.cos(angle*3))*1.25;return 1;}
+function gravitySpeed(angle){return orbitSpeedMultiplier(selectedPlanet,angle);}
 function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
 function segmentDistance(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy;if(!length)return distance(p,a);const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/length));return distance(p,{x:a.x+t*dx,y:a.y+t*dy});}
 function chooseMissions(){const pool=[...MISSION_POOL].sort(()=>random()-.5);missions=pool.slice(0,3).map(item=>({...item,progress:0,done:false}));updateMissions();}

@@ -2,6 +2,14 @@ export const TAU = Math.PI * 2;
 export const wrapAngle = angle => ((angle % TAU) + TAU) % TAU;
 export const angularDistance = (a, b) => Math.abs(Math.atan2(Math.sin(a - b), Math.cos(a - b)));
 export const scoreForShard = combo => 10 * Math.max(1, combo);
+export function orbitSpeedMultiplier(planetId, angle) {
+  if (planetId === 'vela') return .72 + Math.abs(Math.sin(angle)) * 1.05;
+  if (planetId === 'nox') return .58 + Math.abs(Math.cos(angle * 2)) * 1.15;
+  if (planetId === 'kairos') return .68 + Math.abs(Math.sin(angle * 3)) * 1.15;
+  if (planetId === 'rift') return .58 + Math.abs(Math.sin(angle * 2)) * 1.55;
+  if (planetId === 'abyss') return .72 + Math.abs(Math.cos(angle * 3)) * 1.25;
+  return 1;
+}
 export const difficultyAt = seconds => ({
   speed: Math.min(1.85, 1 + seconds / 80),
   spawnEvery: Math.max(0.62, 1.38 - seconds / 100),
