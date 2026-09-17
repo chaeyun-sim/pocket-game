@@ -16,6 +16,14 @@ export function orbitSpeedMultiplier(planetId, angle) {
   if (planetId === 'abyss') return .72 + Math.abs(Math.cos(angle * 3)) * 1.25;
   return 1;
 }
+export function pickSafeAngle(random, isSafe, fallback, attempts = 12) {
+  for (let i = 0; i < attempts; i++) {
+    const angle = random() * TAU;
+    if (isSafe(angle)) return angle;
+  }
+  return fallback;
+}
+export const shouldTriggerWarp = (planetId, cooldown, random) => planetId === 'rift' && cooldown <= 0 && random() < .1;
 export const difficultyAt = seconds => ({
   speed: Math.min(1.85, 1 + seconds / 80),
   spawnEvery: Math.max(0.62, 1.38 - seconds / 100),
