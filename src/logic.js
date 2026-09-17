@@ -5,7 +5,7 @@ export const scoreForShard = combo => 10 * Math.max(1, combo);
 export function scoreForEchoAction(action, affected = 0) {
   if (action === 'cut') return 20;
   if (action === 'hit') return 10;
-  if (action === 'paradox') return 60 + affected * 15;
+  if (action === 'paradox') return -100;
   return 0;
 }
 export function orbitSpeedMultiplier(planetId, angle) {

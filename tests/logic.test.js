@@ -7,7 +7,7 @@ test('score scales with combo',()=>{assert.equal(scoreForShard(1),10);assert.equ
 test('ECHO actions use restrained fixed bonuses',()=>{
   assert.equal(scoreForEchoAction('hit'),10);
   assert.equal(scoreForEchoAction('cut'),20);
-  assert.equal(scoreForEchoAction('paradox',3),105);
+  assert.equal(scoreForEchoAction('paradox'),-100);
 });
 test('NOX accelerates through crossings and slows at ribbon tips',()=>{
   assert.ok(orbitSpeedMultiplier('nox',0)>orbitSpeedMultiplier('nox',Math.PI/4));
