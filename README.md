@@ -1,10 +1,12 @@
 # LUMA — Orbit of Light
 
-방향을 뒤집어 빛을 모으고 붉은 파동을 피하는 모바일 우선 원터치 아케이드 게임입니다.
-
-<p align="center">
+<p align="left">
   <img width="480" alt="LUMA 게임 스크린샷" src="https://github.com/user-attachments/assets/d6b4a599-07e6-4d6a-8952-177c1cb2882a" />
 </p>
+
+> 방향을 뒤집어 빛을 모으고 붉은 파동을 피하는 모바일 우선 원터치 아케이드 게임입니다.
+
+<br />
 
 ## 게임 특징
 
