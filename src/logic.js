@@ -2,6 +2,12 @@ export const TAU = Math.PI * 2;
 export const wrapAngle = angle => ((angle % TAU) + TAU) % TAU;
 export const angularDistance = (a, b) => Math.abs(Math.atan2(Math.sin(a - b), Math.cos(a - b)));
 export const scoreForShard = combo => 10 * Math.max(1, combo);
+export function scoreForEchoAction(action, affected = 0) {
+  if (action === 'cut') return 20;
+  if (action === 'hit') return 10;
+  if (action === 'paradox') return 60 + affected * 15;
+  return 0;
+}
 export function orbitSpeedMultiplier(planetId, angle) {
   if (planetId === 'vela') return .72 + Math.abs(Math.sin(angle)) * 1.05;
   if (planetId === 'nox') return .58 + Math.abs(Math.cos(angle * 2)) * 1.15;

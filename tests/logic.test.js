@@ -1,9 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { wrapAngle, angularDistance, scoreForShard, orbitSpeedMultiplier, difficultyAt, daySeed, mulberry32, TAU } from '../src/logic.js';
+import { wrapAngle, angularDistance, scoreForShard, scoreForEchoAction, orbitSpeedMultiplier, difficultyAt, daySeed, mulberry32, TAU } from '../src/logic.js';
 test('angles wrap into one revolution',()=>{assert.equal(wrapAngle(-Math.PI),Math.PI);assert.ok(wrapAngle(TAU+.2)-.2<1e-12)});
 test('angular distance crosses zero correctly',()=>assert.ok(angularDistance(.05,TAU-.05)<.11));
 test('score scales with combo',()=>{assert.equal(scoreForShard(1),10);assert.equal(scoreForShard(5),50)});
+test('ECHO actions use restrained fixed bonuses',()=>{
+  assert.equal(scoreForEchoAction('hit'),10);
+  assert.equal(scoreForEchoAction('cut'),20);
+  assert.equal(scoreForEchoAction('paradox',3),105);
+});
 test('NOX accelerates through crossings and slows at ribbon tips',()=>{
   assert.ok(orbitSpeedMultiplier('nox',0)>orbitSpeedMultiplier('nox',Math.PI/4));
   assert.ok(orbitSpeedMultiplier('nox',Math.PI/2)>orbitSpeedMultiplier('nox',Math.PI/4));
