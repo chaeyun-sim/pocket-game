@@ -21,9 +21,11 @@
 
 ## 실행하기
 
-별도 패키지 설치 없이 Python 3로 로컬 서버를 실행할 수 있습니다.
+최근 버전의 Node.js와 Python 3가 필요합니다. 외부 패키지를 사용하지 않으므로 `npm install`은 필요하지 않습니다.
 
 ```bash
+git clone https://github.com/chaeyun-sim/pocket-game.git
+cd pocket-game
 npm run dev
 ```
 
